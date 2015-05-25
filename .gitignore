@@ -1,4 +1,5 @@
-custom/zsh
+# Compiled Python files
+*.pyc
 
 vim/backups
 vim/view
