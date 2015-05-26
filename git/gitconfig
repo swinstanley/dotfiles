@@ -127,3 +127,4 @@
   path = .gitconfig.user
 [user]
 	name = Sam Winstanley
+  email = swinstanley@forgetdata.com
