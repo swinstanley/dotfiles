@@ -1,0 +1,44 @@
+Host office.forgetdata.com
+	#	ProxyCommand /usr/bin/ssh www.forgetdata.com nc -q0 %h 22
+		HostKeyAlias grouper.london.forgedata.com
+		HostName office.forgetdata.com
+		PasswordAuthentication yes
+		PubkeyAuthentication yes
+		Tunnel yes
+Host *.memset.com 
+	ControlMaster no
+	PasswordAuthentication yes
+	ForwardAgent no 
+Host shell.memset.com
+	User msforgeab4
+Host *.storage.memset.com
+	User msforgeab1.admin
+	
+Host *.london.forgedata.com
+	ControlMaster auto
+		ControlPath ~/.ssh/%h_%p_%r
+		ControlPersist yes
+		Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc
+		MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160
+		PermitLocalCommand yes
+     	ForwardX11 yes 
+		ForwardX11Trusted yes
+		RSAAuthentication no
+		PasswordAuthentication yes
+		PubkeyAuthentication yes
+		CheckHostIP no
+		EscapeChar ~
+		PermitLocalCommand yes
+
+		GSSAPIAuthentication yes
+		ForwardAgent yes
+		VerifyHostKeyDns no
+		ForwardAgent yes
+	 	PasswordAuthentication yes
+		PreferredAuthentications gssapi,kerberos,publickey,keyboard-interactive
+		IdentityFile ~/.ssh/id_rsa
+		
+Host grouper.tun
+		HostName grouper.london.forgedata.com
+		ProxyCommand /usr/bin/ssh -q office.forgetdata.com nc -q0 %h 22 
+
